@@ -1,10 +1,10 @@
-# Nombre del juego (<- borrar y completar)
+# POKEMON ADVENTURES
 
 ## Equipo de desarrollo
 
-- Alguien
-- Persona
-- etc.
+- CALIZAYA MAMANI SANTIAGO FRANCISCO
+- CHOQUE TAQUICHIRI FERNANDO JOSÉ
+- VILLCA CAYAMPI VALENTIN MAXIMILIANO	
 
 ## Capturas
 
@@ -12,11 +12,11 @@
 
 ## Reglas de Juego / Instrucciones
 
-(Escribirlas)
+En primera instancia se espera presionar por teclado ENTER para abrir el menú de seleccion de personaje
 
 
 ## Otros
 
-- Curso/Facultad
-- Versión de wollok
+- K2033 UTN FRBA
+- Versión de wollok 0.2.8
 - Una vez terminado, no tenemos problemas en que el repositorio sea público / queremos manternerlo privado
