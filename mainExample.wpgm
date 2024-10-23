@@ -6,3 +6,4 @@ program juego {
 	menuJuego.inicializar()
 	game.start()
 }
+	
