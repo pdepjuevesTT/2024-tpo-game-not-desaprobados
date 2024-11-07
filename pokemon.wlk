@@ -2,7 +2,8 @@ object mapaJuego {
     var property fondo = true
     var property position = game.origin()
     
-    method image() = "mapaJuego.png"
+    method saludar() = ""
+    method image() = "prueba10.png"
 }
 
 object menu {
@@ -13,15 +14,40 @@ object menu {
         game.addVisualCharacter(charmander)
         game.addVisual(llaveMapa1)
         game.onCollideDo(charmander, {elemento => charmander.agregarInventario(elemento)})
+
 		keyboard.e().onPressDo{
             game.addVisual(inventario)
             game.addVisual(manzanasInventario)
             game.addVisual(esmeraldasInventario)}
+
         keyboard.f().onPressDo{
             game.removeVisual(inventario)
             game.removeVisual(manzanasInventario)
             game.removeVisual(esmeraldasInventario)}
+
+        game.addVisual(venusaur)
+        game.whenCollideDo(venusaur,{elemento => game.say(venusaur, venusaur.saludar())})
+
+        keyboard.y().onPressDo{
+            const pantallaPelea = new FondoPelea(imagen = "charVSvenu.jpg")
+            game.addVisual(pantallaPelea)
+
+            keyboard.space().onPressDo{
+                game.removeVisual(pantallaPelea)
+                const pantallaPelea = new FondoPelea(imagen = "p4.jpg")
+                game.addVisual(pantallaPelea)
+            }
+
+        }
     }
+}
+
+class FondoPelea{
+    var property fondo = true
+    var property position = game.origin()
+    var imagen = ""
+    
+    method image() = imagen
 }
 
 object charmander {
@@ -39,6 +65,21 @@ object charmander {
         game.say(self, "Objeto agregado al inventario")
         }
     }
+}
+
+class PokemonEnemigo{
+    var property energia = 100
+    var imagen = ""
+    var posicion = game.center()
+    var property position = posicion
+
+    method image() = imagen
+}
+
+object venusaur inherits PokemonEnemigo(imagen = "venusaur.png",posicion = game.at(11, 10)){
+    var property fondo = true
+    method saludar() = "Si quieres la llave tendras que pelear (Y para iniciar pelea)"
+    //movimientos
 }
 
 object inventario {
@@ -71,7 +112,7 @@ class Llaves {
     method image() = imagen
 }
 
-const llaveMapa1 = new Llaves(fondo = false,imagen = "llaveV1.png",posicion = game.at(10,10))
+const llaveMapa1 = new Llaves(fondo = true,imagen = "llaveV1.png",posicion = game.at(10,10))
 
 class Textos {
     var property fondo = true
