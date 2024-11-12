@@ -3,12 +3,11 @@ object mapaJuego {
     var property position = game.origin()
     
     method saludar() = ""
-    method image() = "prueba10.png"
+    method image() = "mapa.png"
 }
 
 object menu {
     method iniciarJuego(){
-        game.clear()
         game.addVisual(mapaJuego)
         game.addVisual(manzana)
         game.addVisualCharacter(charmander)
@@ -18,26 +17,23 @@ object menu {
 		keyboard.e().onPressDo{
             game.addVisual(inventario)
             game.addVisual(manzanasInventario)
-            game.addVisual(esmeraldasInventario)}
-
-        keyboard.f().onPressDo{
-            game.removeVisual(inventario)
-            game.removeVisual(manzanasInventario)
-            game.removeVisual(esmeraldasInventario)}
+            game.addVisual(esmeraldasInventario)
+            game.schedule(3000, {
+                game.removeVisual(inventario)
+                game.removeVisual(manzanasInventario)
+                game.removeVisual(esmeraldasInventario)
+            })}
 
         game.addVisual(venusaur)
         game.whenCollideDo(venusaur,{elemento => game.say(venusaur, venusaur.saludar())})
 
         keyboard.y().onPressDo{
-            const pantallaPelea = new FondoPelea(imagen = "charVSvenu.jpg")
+            const pantallaPelea = new FondoPelea(imagen = "charVSvenusaur.jpg")
             game.addVisual(pantallaPelea)
-
-            keyboard.space().onPressDo{
+            game.schedule(3000, {
                 game.removeVisual(pantallaPelea)
-                const pantallaPelea = new FondoPelea(imagen = "p4.jpg")
-                game.addVisual(pantallaPelea)
-            }
-
+                const arena = new FondoPelea(imagen = "pelea1.jpg")
+                game.addVisual(arena)})
         }
     }
 }
@@ -54,7 +50,7 @@ object charmander {
     var property energia = 100
     var property position = game.origin()
 
-    method image() = "charmanderV1.png"
+    method image() = "charmanderV3.png"
 
     const inventario = []
 
@@ -101,7 +97,7 @@ class Comida {
     method image() = imagen    
 }
 
-const manzana = new Comida(fondo = false,energia = 20,imagen = "manzana.png",posicion = game.at(15, 10))
+const manzana = new Comida(fondo = false,energia = 20,imagen = "manzana.png",posicion = game.at(25, 10))
 
 class Llaves {
     var property fondo = false
@@ -112,7 +108,7 @@ class Llaves {
     method image() = imagen
 }
 
-const llaveMapa1 = new Llaves(fondo = true,imagen = "llaveV1.png",posicion = game.at(10,10))
+const llaveMapa1 = new Llaves(fondo = true,imagen = "llaveV1.png",posicion = game.at(8,10))
 
 class Textos {
     var property fondo = true
