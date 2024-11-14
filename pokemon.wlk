@@ -14,7 +14,9 @@ const ambiente = game.sound("ambiente.mp3")
 const peleaMusica = game.sound("soundPeleaUno.mp3")
 
 object menu {
+
     method iniciarJuego(){
+        
         ambiente.play()
 
         game.addVisual(mapaJuego)
@@ -33,18 +35,27 @@ object menu {
 
         // JUEGO
 
+        keyboard.p().onPressDo{ambiente.volume(0.3)}
+
 		keyboard.e().onPressDo{
             const manzanasInventario = new Textos(fondo = true,texto = "Manzanas x " + charmander.manzanas(), posicion = game.at(34,14))
+            const manzanaInventario = new Comida(fondo = true,energia = 0,imagen = "manzana2.png",posicion = game.at(32, 14))
 
             const llavesInventario = new Textos(fondo = true,texto = "Llaves x " + charmander.llavesP(), posicion = game.at(34,13))
+            const llaveInventario = new Llaves(fondo = true,imagen = "llaveV3.png",posicion = game.at(32,13))
 
             game.addVisual(inventario)
             game.addVisual(manzanasInventario)
             game.addVisual(llavesInventario)
+            game.addVisual(manzanaInventario)
+            game.addVisual(llaveInventario)
+
             game.schedule(3000, {
                 game.removeVisual(inventario)
                 game.removeVisual(manzanasInventario)
                 game.removeVisual(llavesInventario)
+                game.removeVisual(manzanaInventario)
+                game.removeVisual(llaveInventario)
             })}
 
         game.addVisual(venusaur)
@@ -87,9 +98,11 @@ object menu {
             keyboard.y().onPressDo{
                 ambiente.pause()
                 peleaMusica.play()
+                keyboard.o().onPressDo{peleaMusica.volume(0.3)}
                 game.removeVisual(pantallaCharla)
                 const pantallaPelea = new FondoPelea(imagen = "PANTALLA_PELEA_UNO.jpg")
                 game.addVisual(pantallaPelea)
+
                 game.schedule(3000, {
                 game.removeVisual(pantallaPelea)
                 const arena = new FondoPelea(imagen = "PELEA_UNO_V1.jpg")
@@ -119,6 +132,7 @@ object menu {
 
     method terminarJuego(){
         game.clear()
+        peleaMusica.stop()
         const pantallaDerrota = new FondoPelea(imagen = "PANTALLA_DERROTA_UNO.jpg")
         game.addVisual(pantallaDerrota)
     }
@@ -195,17 +209,18 @@ object charmander inherits Pokemon(energia = 1000, position = game.origin(),imag
     }
 
     method giroFuego(){
-        rival.restarVida(150)
+        rival.restarVida(140)
         rival.atacar(self)
     }
 
     method dragoAliento(){
-        rival.restarVida(200)
+        rival.restarVida(160)
         rival.atacar(self)
     }
 
     override method restarVida(cantidad){
         super(cantidad)
+
         if(self.energia() <= 0){
             menu.terminarJuego()
         }else{

@@ -9,7 +9,5 @@ object menuJuego {
 		game.boardGround("fondoInicio.png")
 		keyboard.enter().onPressDo{menu.iniciarJuego()}
 	}
-
-
 }
 
