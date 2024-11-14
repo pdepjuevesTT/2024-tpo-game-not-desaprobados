@@ -13,10 +13,10 @@
 ## Reglas de Juego / Instrucciones
 
 Se indica el teclado de jugabilidad, ademas de estar indicado a medida que vaya jugando
-Flechas de teclado - Movimiento basico (arriba, abajo, izquierda, derecha)
-B - Comer manzanas
-K - Usar llaves
-E - Ver inventario
+- Flechas de teclado - Movimiento basico (arriba, abajo, izquierda, derecha)
+- B - Comer manzanas
+- K - Usar llaves
+- E - Ver inventario
 
 El jugador podra conocer la derrota en el caso de que pierda la pelea con uno de los rivales
 A su vez, conocera la victoria si logra vencer a los rivales y abrir la puerta bloqueada.
